@@ -1,0 +1,11 @@
+version: "3.3"
+
+services:
+  frontend:
+    build:
+      context: ../
+      dockerfile: docker-deployment/angular-dockerfile
+    expose:
+      - 8080
+    ports:
+      - 8080:8080
