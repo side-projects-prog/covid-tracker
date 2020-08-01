@@ -1,17 +1,54 @@
-<div>
-    <form>
-        <input type="text" #country>
-    </form>
-    <button (click) = "refreshNews(country.value)">click me</button>
-</div>
-
-
-
-<div>
-    <div *ngIf = "!latestNews.isError">
-        last update : {{latestNews.news.lastUpdate}}
-        <div *ngFor = " let news of latestNews.news.news">
-            {{news.title}}
+<div class="container">
+    <div class="header">
+        <div class="news-header">
+            <div class="main">NEWS</div>
+            <div *ngIf="!latestNews.isError" class="footer">Updated {{elaspedTime}} minutes ago</div>
+        </div>
+        <div>
+            <mat-form-field>
+                <mat-label>country</mat-label>
+                <mat-select [(value)]="currentCountry" (selectionChange)="refreshNews()">
+                  <mat-option [value]="country.code" *ngFor="let country of countries">{{country.name}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+        </div>
+        <div>
+            <button mat-icon-button (click)="refreshNews()">
+                <mat-icon>refresh</mat-icon>
+            </button>
+        </div>
+    </div>
+    <mat-divider></mat-divider>
+    <div class="news-container">
+        <div *ngIf="!latestNews.isError" class="news-cards">
+            <div *ngFor="let news of latestNews.news.news" class="news-card">
+                <mat-card class="mat-elevation-z5">
+                    <mat-card-title>{{news.title}}</mat-card-title>
+                    <mat-card-content>
+                        {{news.summary}}
+                    </mat-card-content>
+                    <mat-expansion-panel class="mat-elevation-z0">
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                more...
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+                        <div class="external-link-div">
+                            <a href="{{news.fullArticlePath}}" target="_blank">Read full article &nbsp;<mat-icon>
+                                    open_in_new</mat-icon></a>
+                        </div>
+                        <div class="external-link-div">
+                            <div>News by : &nbsp;</div>
+                            <div><a href="https://{{news.providerUrl}}" target="_blank">{{news.provider}}</a></div>
+                        </div>
+                    </mat-expansion-panel>
+                    <mat-card-footer class="news-card-footer">{{getPublishedOnFormatting(news.publishedAt)}}
+                    </mat-card-footer>
+                </mat-card>
+            </div>
+        </div>
+        <div *ngIf="latestNews.isError">
+            {{latestNews.error}}
         </div>
     </div>
 </div>

@@ -12,8 +12,14 @@ import { environment } from '../environments/environment';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { EffectsModule } from '@ngrx/effects';
 import { LatestNewsEffects } from './effects/latest-news.effects';
-import { HttpClient, HttpHeaders, HttpClientModule } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { NewsService } from './services/news.service';
+import { MatCardModule} from '@angular/material/card';
+import {MatExpansionModule} from '@angular/material/expansion';
+import {MatIconModule} from '@angular/material/icon';
+import {MatDividerModule} from '@angular/material/divider';
+import {MatButtonModule} from '@angular/material/button';
+import {MatSelectModule} from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -26,6 +32,12 @@ import { NewsService } from './services/news.service';
     BrowserAnimationsModule,
     FormsModule,
     HttpClientModule,
+    MatCardModule,
+    MatExpansionModule,
+    MatIconModule,
+    MatDividerModule,
+    MatButtonModule,
+    MatSelectModule,
     StoreModule.forRoot(reducers, {
       metaReducers, 
       runtimeChecks: {
