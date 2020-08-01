@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable, Subject, BehaviorSubject, ReplaySubject } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { State } from '../reducers';
+import { RefreshNews } from '../actions/covid-news.actions';
+import { NewsState } from '../reducers/latest-news.reducer';
 
 @Component({
 	selector: 'app-covid-news',
@@ -8,43 +11,22 @@ import { Observable, Subject, BehaviorSubject, ReplaySubject } from 'rxjs';
 })
 export class CovidNewsComponent implements OnInit {
 
-	myObservable$;
-	mySubject$;
+	public latestNews: NewsState;
 
-	constructor() { }
+	constructor(private store: Store<State>) { }
 
 	ngOnInit(): void {
-
-		this.myObservable$ = new Observable(
-			subscriber => {
-				subscriber.next(10);
-				subscriber.next(11);
-				setTimeout(
-					() => {
-						subscriber.next(111);
-						// subscriber.complete();
-					}, 1000
-				)
-			}
-		)
-
-		// console.log("now we will subscribe our observable");
-		// this.myObservable$.subscribe({
-		// 	next(element: number) { console.log(element) },
-		// 	error(err) { console.log(err) },
-		// 	complete() { console.log("done") }
-		// })
-
-		console.log("subject now")
-		this.mySubject$ = new ReplaySubject<number>();
-		this.mySubject$.next(1);
-		this.mySubject$.next(2);
-		this.mySubject$.next(3);
-		this.mySubject$.subscribe(x => console.log("here", x));
-
+		this.getLatestNews();
 	}
 
-	ngOnDestroy() {
-		this.myObservable$.unsubscribe();
+	refreshNews(country: string) {
+		let refreshNewsAction = new RefreshNews(country);
+		this.store.dispatch(refreshNewsAction);
 	}
+
+	getLatestNews() {
+		this.store.select(state => state.covidNews)
+			.subscribe(newsState => this.latestNews = newsState);
+	}
+
 }

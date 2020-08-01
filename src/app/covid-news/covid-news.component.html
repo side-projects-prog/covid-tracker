@@ -1,1 +1,17 @@
-<p>covid-news works!</p>
+<div>
+    <form>
+        <input type="text" #country>
+    </form>
+    <button (click) = "refreshNews(country.value)">click me</button>
+</div>
+
+
+
+<div>
+    <div *ngIf = "!latestNews.isError">
+        last update : {{latestNews.news.lastUpdate}}
+        <div *ngFor = " let news of latestNews.news.news">
+            {{news.title}}
+        </div>
+    </div>
+</div>
