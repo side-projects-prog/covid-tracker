@@ -15,7 +15,7 @@ export interface NewsState {
 export const initialState: NewsState = {
   news: null,
   isError: true,
-  error: "Failed to load news"
+  error: "No news available."
 };
 
 export function fetchNewsReducer(state = initialState, action: NewsFetchActions): NewsState {
