@@ -3,8 +3,12 @@
       <form action="" class="example-form">
         <mat-form-field class="example-full-width">
           <mat-label>State</mat-label>
-          <input type="text" matInput placeholder="State & Provinces" [(ngModel)]="searchString"
-          (ngModelChange)="inputChanged($event)" name="something" [matAutocomplete]="auto" [formControl]="myControl"> 
+          <input type="text" 
+          matInput 
+          placeholder="State & Provinces" 
+            name="stats" 
+           [matAutocomplete]="auto" 
+           [formControl]="myControl"> 
         <mat-autocomplete #auto="matAutocomplete" class="option">
           <mat-option (onSelectionChange)="optionClick(state)" *ngFor="let state of filteredOptions | async" [value]="state">
             {{state}}
