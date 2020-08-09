@@ -1,0 +1,49 @@
+
+      <!--State Input-->
+      <form action="" class="example-form">
+        <mat-form-field class="example-full-width">
+          <mat-label>State</mat-label>
+          <input type="text" matInput placeholder="State & Provinces" [(ngModel)]="searchString"
+          (ngModelChange)="inputChanged($event)" name="something" [matAutocomplete]="auto" [formControl]="myControl"> 
+        <mat-autocomplete #auto="matAutocomplete" class="option">
+          <mat-option (onSelectionChange)="optionClick(state)" *ngFor="let state of filteredOptions | async" [value]="state">
+            {{state}}
+          </mat-option>
+        </mat-autocomplete>
+        </mat-form-field>
+          
+      </form> 
+      
+      <!--Graph -->
+      <div class="center">
+  <div #charts id="test">
+      </div>
+  
+      </div>
+      
+      <!-- <mat-divider [inset]="true"></mat-divider> -->
+    <!--Recoverd , Deaths , NUmber of cases-->
+      <mat-grid-list cols="3" rowHeight="2:1" class="grid">
+        <mat-grid-tile class="total">
+           <p>{{total}}</p>
+          <mat-grid-tile-footer>Total Cases</mat-grid-tile-footer>
+         
+        </mat-grid-tile>
+        <mat-grid-tile class="deaths">
+          <p>{{deaths}}</p>
+          <mat-grid-tile-footer>
+            Deaths
+          </mat-grid-tile-footer>
+        </mat-grid-tile>
+        <mat-grid-tile class="recovered">
+          <p>{{recovered}}</p>
+          <mat-grid-tile-footer>
+            Recovered
+          </mat-grid-tile-footer>
+        </mat-grid-tile>
+      </mat-grid-list>
+      
+  
+  
+  <div #charts id="test"></div>
+  

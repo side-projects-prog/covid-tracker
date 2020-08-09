@@ -20,13 +20,33 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatButtonModule} from '@angular/material/button';
 import {MatSelectModule} from '@angular/material/select';
+import {MatRippleModule} from '@angular/material/core';
+import {MatGridListModule} from '@angular/material/grid-list';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import { StatisticsComponent } from './statistics/statistics.component';
+
+
+
+
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    CovidNewsComponent
+    CovidNewsComponent,
+    StatisticsComponent
   ],
   imports: [
+    ReactiveFormsModule,
+    MatRippleModule,
+    MatGridListModule,
+    MatFormFieldModule,
+    MatSidenavModule,
+    MatAutocompleteModule,
+    MatInputModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
